@@ -1,19 +1,19 @@
 //UL that displays letters guessed
 const guessedLetters = document.querySelector("ul");
 //guess button
-const guessButton = document.querySelector(".guess button");
+const guessButton = document.querySelector(".guess");
 //letter input field
 const input = document.querySelector("input");
 //empty paragraph where word in progress will appear
-const progress = document.querySelector(".word-in-progress p");
+const progress = document.querySelector(".word-in-progress");
 //paragraph for remaining guesses in play
-const remain = document.querySelector(".remaining p");
+const remain = document.querySelector(".remaining");
 //span inside the .remaining class, where remaining guesses will display
 const span = document.querySelector("span");
 //empty paragraph that will display messages that encourage the player to guess
-const message = document.querySelector(".message p");
+const message = document.querySelector(".message");
 //play again button, initially hidden
-const playButton = document.querySelector(".play-again button");
+const playButton = document.querySelector(".play-again");
 //test word
 const word = "magnolia";
 

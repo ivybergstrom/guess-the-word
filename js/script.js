@@ -1,5 +1,5 @@
 //UL that displays letters guessed
-const guessedLetters = document.querySelector("ul");
+const ul = document.querySelector("ul");
 //guess button
 const guessButton = document.querySelector(".guess");
 //letter input field
@@ -16,6 +16,8 @@ const message = document.querySelector(".message");
 const playButton = document.querySelector(".play-again");
 //test word
 const word = "magnolia";
+//will contain all the letters that have been guessed
+const guessedLetters = [];
 
 //function to hold circle symbols in place of letters
 const circle = function (word){
@@ -30,7 +32,41 @@ circle(word);
 
 guessButton.addEventListener = function (e) {
   e.preventDefault();
-  const entryLetter = input.value;
-  console.log(entryLetter);
-  input.value = " ";
+  //empty message paragraph
+  message.innerText = " ";
+  //grabbing input value
+  const guess = input.value;
+  //verifying that it is a single letter
+  const goodGuess = validator(guess);
+
+  if (goodGuess) {
+    makeGuess(guess);
+  }
+};
+
+//function to check players input
+const validator = function () {
+   const acceptedLetter = /[a-zA-Z]/
+
+   if (input.value === " "){
+     console.log("Please enter a single letter.");
+   } else if (input.value === `${(number)+1}`) {
+     console.log("Please enter a SINGLE letter.");
+   } else if (input.value !== acceptedLetter) {
+     console.log("Please enter a single LETTER.");
+   } else {
+     console.log("Great guess!");
+     return;
+   }
+};
+
+const makeGuess = function (guess) {
+guess = guess.toUpperCase();
+//checks to see if  this letter has been guessed
+if (guess.includes.guessedLetters) {
+  console.log("You already guessed that one, silly! Try a new letter.");
+} else {
+  guessedLetters.push(`${guess}`);
+}
+console.log(guessedLetters);
 };

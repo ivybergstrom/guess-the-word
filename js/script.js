@@ -1,5 +1,5 @@
 //UL that displays letters guessed
-const ul = document.querySelector("ul");
+const guessedUL = document.querySelector("ul");
 //guess button
 const guessButton = document.querySelector(".guess");
 //letter input field
@@ -41,7 +41,10 @@ guessButton.addEventListener = function (e) {
 
   if (goodGuess) {
     makeGuess(guess);
+  } else {
+    displayGuessedLetters();
   }
+  input.value = " ";
 };
 
 //function to check players input
@@ -69,4 +72,15 @@ if (guess.includes.guessedLetters) {
   guessedLetters.push(`${guess}`);
 }
 console.log(guessedLetters);
+};
+
+const displayGuessedLetters = function () {
+  //emptying innerHTML to display nothing
+  guessedUL.innterHTML = " ";
+  //turning guessed letters into html elements so they can show on the page
+  for (const letter of guessedLetters) {
+    const letterLI = document.createElement("li");
+    guessedUL.append("letterLI");
+}
+
 };

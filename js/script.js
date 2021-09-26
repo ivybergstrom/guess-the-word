@@ -1,15 +1,15 @@
 //UL that displays letters guessed
-const guessedUL = document.querySelector("ul");
+const guessedUL = document.querySelector(".guessed-letters");
 //guess button
 const guessButton = document.querySelector(".guess");
 //letter input field
-const input = document.querySelector("input");
+const input = document.querySelector(".letter");
 //empty paragraph where word in progress will appear
 const progress = document.querySelector(".word-in-progress");
 //paragraph for remaining guesses in play
 const remain = document.querySelector(".remaining");
 //span inside the .remaining class, where remaining guesses will display
-const span = document.querySelector("span");
+const span = document.querySelector(".remaining span");
 //empty paragraph that will display messages that encourage the player to guess
 const message = document.querySelector(".message");
 //play again button, initially hidden
@@ -18,6 +18,7 @@ const playButton = document.querySelector(".play-again");
 const word = "magnolia";
 //will contain all the letters that have been guessed
 const guessedLetters = [];
+
 
 //function to hold circle symbols in place of letters
 const circle = function (word){
@@ -30,10 +31,10 @@ const circle = function (word){
 };
 circle(word);
 
-guessButton.addEventListener = function (e) {
+guessButton.addEventListener = ("click", function (e) {
   e.preventDefault();
   //empty message paragraph
-  message.innerText = " ";
+  message.innerText = "";
   //grabbing input value
   const guess = input.value;
   //verifying that it is a single letter
@@ -45,21 +46,19 @@ guessButton.addEventListener = function (e) {
     displayGuessedLetters();
   }
   input.value = " ";
-};
+});
 
 //function to check players input
-const validator = function () {
-   const acceptedLetter = /[a-zA-Z]/
-
-   if (input.value === " "){
-     console.log("Please enter a single letter.");
-   } else if (input.value === `${(number)+1}`) {
-     console.log("Please enter a SINGLE letter.");
-   } else if (input.value !== acceptedLetter) {
-     console.log("Please enter a single LETTER.");
+const validator = function (input) {
+   const acceptedLetter = /[a-zA-Z]/;
+   if (input.length === 0) {
+     message.innerText = "Please enter a letter.";
+   } else if (input.length > 1) {
+     message.innerText = "Please enter a SINGLE letter.";
+   } else if (!input.match(acceptedLetter)) {
+     message.innerText = "Please enter a single LETTER.";
    } else {
-     console.log("Great guess!");
-     return;
+     return input;
    }
 };
 

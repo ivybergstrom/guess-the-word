@@ -3,7 +3,7 @@ const guessedUL = document.querySelector(".guessed-letters");
 //guess button
 const guessButton = document.querySelector(".guess");
 //letter input field
-const input = document.querySelector(".letter");
+const letterInput = document.querySelector(".letter");
 //empty paragraph where word in progress will appear
 const progress = document.querySelector(".word-in-progress");
 //paragraph for remaining guesses in play
@@ -31,21 +31,19 @@ const circle = function (word){
 };
 circle(word);
 
-guessButton.addEventListener = ("click", function (e) {
+guessButton.addEventListener("click", function (e) {
   e.preventDefault();
   //empty message paragraph
   message.innerText = "";
   //grabbing input value
-  const guess = input.value;
+  const guess = letterInput.value;
   //verifying that it is a single letter
   const goodGuess = validator(guess);
 
   if (goodGuess) {
     makeGuess(guess);
-  } else {
-    displayGuessedLetters();
   }
-  input.value = " ";
+  letterInput.value = " ";
 });
 
 //function to check players input
@@ -81,5 +79,11 @@ const displayGuessedLetters = function () {
     const letterLI = document.createElement("li");
     guessedUL.append("letterLI");
 }
+};
 
+//replaces dot symbols with letters
+const updateWordProgress = function (guessedLetters) {
+  const wordUpper = word.toUppercase();
+  const wordArray = wordUpper.split("");
+  console.log(wordArray);
 };

@@ -65,8 +65,8 @@ const validator = function (input) {
 const makeGuess = function (guess) {
 guess = guess.toUpperCase();
 //checks to see if  this letter has been guessed
-if (guess.includes.guessedLetters) {
-  console.log("You already guessed that one, silly! Try a new letter.");
+if (guessedLetters.includes(guess)) {
+  message.innerText= "You already guessed that one, silly! Try a new letter.";
 } else {
   guessedLetters.push(`${guess}`);
   countDown(guessedLetters); //links function so remaining guesses will update as the player guesses letters

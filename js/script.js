@@ -21,6 +21,14 @@ const guessedLetters = [];
 //global variable to track the number of guesses allowed
 let remainingGuesses = 8;
 
+//function to pull random words from API
+const getWord = async function () {
+  const get = await fetch ("https://gist.githubusercontent.com/skillcrush-curriculum/7061f1d4d3d5bfe47efbfbcfe42bf57e/raw/5ffc447694486e7dea686f34a6c085ae371b43fe/words.txt");
+  const words = await get.text();
+  ///console.log(words); This was to test API was working, and yes it is.
+};
+
+getWord();
 
 //function to hold circle symbols in place of letters
 const circle = function (word){

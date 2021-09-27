@@ -32,7 +32,6 @@ const circle = function (word){
   }
   progress.innerText = placeHolderLetters.join("");
 };
-circle(word);
 
 guessButton.addEventListener("click", function (e) {
   e.preventDefault();
@@ -69,8 +68,11 @@ guess = guess.toUpperCase();
 if (guessedLetters.includes(guess)) {
   message.innerText= "You already guessed that one, silly! Try a new letter.";
 } else {
-  guessedLetters.push(`${guess}`);
-  countDown(guessedLetters); //links function so remaining guesses will update as the player guesses letters
+  guessedLetters.push(guess);
+  console.log(guessedLetters);
+  countDown(guess);
+  displayGuessedLetters;
+  updateWordProgress(guessedLetters); //links function so remaining guesses will update as the player guesses letters
 }
 //console.log(guessedLetters);
 updateWordProgress(guessedLetters);

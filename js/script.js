@@ -15,7 +15,7 @@ const message = document.querySelector(".message");
 //play again button, initially hidden
 const playButton = document.querySelector(".play-again");
 //test word
-let word = "magnolia";
+let word = "magnollia";
 //will contain all the letters that have been guessed
 const guessedLetters = [];
 //global variable to track the number of guesses allowed
@@ -24,8 +24,15 @@ let remainingGuesses = 8;
 //function to pull random words from API
 const getWord = async function () {
   const get = await fetch ("https://gist.githubusercontent.com/skillcrush-curriculum/7061f1d4d3d5bfe47efbfbcfe42bf57e/raw/5ffc447694486e7dea686f34a6c085ae371b43fe/words.txt");
-  const words = await get.text();
-  ///console.log(words); This was to test API was working, and yes it is.
+  const wordsApi = await get.text();
+  ///console.log(words); This was to test API was working, and yes it is. Line below converts the words into array elements
+  const wordArray = wordsApi.split("\n");
+  //console.log(wordArray); Line below will pull a random word from the array
+  const selectRandomWord = function () {
+    const randomizer = Math.floor(Math(random)*wordArray.length);
+    const word = wordArray[randomIndex].trim();
+    placeholder(word);
+  };
 };
 
 getWord();

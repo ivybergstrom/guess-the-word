@@ -1,39 +1,25 @@
-//UL that displays letters guessed
-const guessedUL = document.querySelector(".guessed-letters");
-//guess button
-const guessButton = document.querySelector(".guess");
-//letter input field
-const letterInput = document.querySelector(".letter");
-//empty paragraph where word in progress will appear
-const progress = document.querySelector(".word-in-progress");
-//paragraph for remaining guesses in play
-const remain = document.querySelector(".remaining");
-//span inside the .remaining class, where remaining guesses will display
-const span = document.querySelector(".remaining span");
-//empty paragraph that will display messages that encourage the player to guess
-const message = document.querySelector(".message");
-//play again button, initially hidden
-const playButton = document.querySelector(".play-again");
-//test word
-let word = "magnollia";
-//will contain all the letters that have been guessed
-const guessedLetters = [];
-//global variable to track the number of guesses allowed
-let remainingGuesses = 8;
+const guessedUL = document.querySelector(".guessed-letters"); //UL that displays letters guessed
+const guessButton = document.querySelector(".guess"); //guess button
+const letterInput = document.querySelector(".letter");//letter input field
+const progress = document.querySelector(".word-in-progress"); //empty paragraph where word in progress will appear
+const remain = document.querySelector(".remaining"); //paragraph for remaining guesses in play
+const span = document.querySelector(".remaining span"); //span inside the .remaining class, where remaining guesses will display
+const message = document.querySelector(".message"); //empty paragraph that will display messages that encourage the player to guess
+const playButton = document.querySelector(".play-again"); //play again button, initially hidden
+
+let word = "magnolia"; //test word
+const guessedLetters = []; //will contain all the letters that have been guessed
+let remainingGuesses = 8; //global variable to track the number of guesses allowed
 
 //function to pull random words from API
 const getWord = async function () {
   const get = await fetch ("https://gist.githubusercontent.com/skillcrush-curriculum/7061f1d4d3d5bfe47efbfbcfe42bf57e/raw/5ffc447694486e7dea686f34a6c085ae371b43fe/words.txt");
-  const wordsApi = await get.text();
-  ///console.log(words); This was to test API was working, and yes it is. Line below converts the words into array elements
-  const wordArray = wordsApi.split("\n");
-  //console.log(wordArray); Line below will pull a random word from the array
-  const selectRandomWord = function () {
-    const randomizer = Math.floor(Math(random)*wordArray.length);
-    const word = wordArray[randomIndex].trim();
-    placeholder(word);
+  const wordsApi = await get.text(); ///console.log(words); This was to test API was working, and yes it is. Line below converts the words into array elements
+  const wordArray = wordsApi.split("\n");//console.log(wordArray); Line below will pull a random word from the array
+    const randomIndex = Math.floor(Math.random() * wordArray.length);
+    word = wordArray[randomIndex].trim();
+    circle(word);
   };
-};
 
 getWord();
 
@@ -41,10 +27,10 @@ getWord();
 const circle = function (word){
   const placeHolderLetters = [];
   for (const letter of word) {
-    console.log(letter);
+    //console.log(letter);
     placeHolderLetters.push("●");
   }
-  progress.innerText = placeHolderLetters.join("  ");
+  progress.innerText = placeHolderLetters.join("");
 };
 circle(word);
 

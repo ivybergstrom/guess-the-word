@@ -111,16 +111,16 @@ const countDown = function (guess) {
     } else {
       message.innerText = `Great job! The word has ${guess}!`;
     }
-  }
+  
    //displays the number of remaining guesses on page
-  if (remainingGuesses === 0) {
-    message.innerHTML = `Game over! The word was <span class ="highlight">${word}</span>.`;
-  } else if (remainingGuesses === 1) {
-    span.innerText = `${remainingGuesses} guess`;
-  } else if (remainingGuesses > 1){
-    span.innerText= `${remainingGuesses} guesses`;
+    if (remainingGuesses === 0) {
+      message.innerHTML = `Game over! The word was <span class ="highlight">${word}</span>.`;
+    } else if (remainingGuesses === 1) {
+      span.innerText = `${remainingGuesses} guess`;
+    } else if (remainingGuesses > 1){
+      span.innerText= `${remainingGuesses} guesses`;
   };
-
+};
 
 //checks if this is a win
 const winCheck = function () {

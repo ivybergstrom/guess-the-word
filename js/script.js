@@ -72,8 +72,8 @@ if (guessedLetters.includes(guess)) {
   console.log(guessedLetters);
   countDown(guess);
   displayGuessedLetters;
-  updateWordProgress(guessedLetters); //links function so remaining guesses will update as the player guesses letters
 }
+updateWordProgress(guessedLetters); //links function so remaining guesses will update as the player guesses letters
 };
 
 const displayGuessedLetters = function () {
@@ -140,3 +140,11 @@ const startOver = function () {
   guessedUL.classList.add("hide");
   playButton.classList.remove("hide");
 }
+
+playButton.addEventListener("click", function (e) (
+  message.classList.remove("win");
+  message.innerText = "";
+  guessedUL.innerText = "";
+  remainingGuesses = 8;
+  getWord();
+);

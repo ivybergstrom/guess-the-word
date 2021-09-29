@@ -142,7 +142,7 @@ const winCheck = function () {
     startOver();
   } 
 };
-
+//game reset
 const startOver = function () {
   guessButton.classList.add("hide");
   remain.classList.add("hide");
@@ -155,5 +155,6 @@ playButton.addEventListener("click", function (e) {
   message.innerText = "";
   guessedUL.innerText = "";
   remainingGuesses = 8;
+  guessedUL.innerHTML = "";
   getWord();
 });

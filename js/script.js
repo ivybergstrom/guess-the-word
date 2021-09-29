@@ -14,7 +14,8 @@ let remainingGuesses = 8; //global variable to track the number of guesses allow
 //function to pull random words from API
 const getWord = async function () {
   const response = await fetch("https://gist.githubusercontent.com/skillcrush-curriculum/7061f1d4d3d5bfe47efbfbcfe42bf57e/raw/5ffc447694486e7dea686f34a6c085ae371b43fe/words.txt");
-  const wordsApi = await response.text(); ///console.log(words); This was to test API was working, and yes it is. Line below converts the words into array elements
+  const wordsApi = await response.text(); 
+  console.log(wordsApi); //This was to test API was working, and yes it is. Line below converts the words into array elements
   const wordArray = wordsApi.split("\n"); //console.log(wordArray); Line below will pull a random word from the array
   const randomIndex = Math.floor(Math.random() * wordArray.length);
   word = wordArray[randomIndex].trim();
@@ -23,7 +24,7 @@ const getWord = async function () {
 //this retrieve's word and starts game
 getWord(); 
 //function to hold circle symbols in place of letters
-const circle = function (word){
+const circle = function (word) {
   const placeholderLetters = [];
   for (const letter of word) {
     //console.log(letter);

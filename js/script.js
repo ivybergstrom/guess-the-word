@@ -15,16 +15,18 @@ let remainingGuesses = 8; //global variable to track the number of guesses allow
 const getWord = async function () {
   const response = await fetch("https://gist.githubusercontent.com/skillcrush-curriculum/7061f1d4d3d5bfe47efbfbcfe42bf57e/raw/5ffc447694486e7dea686f34a6c085ae371b43fe/words.txt");
   const wordsApi = await response.text(); 
-  console.log(wordsApi); //This was to test API was working, and yes it is. Line below converts the words into array elements
+  //console.log(wordsApi); //This was to test API was working, and yes it is. Line below converts the words into array elements
   const wordArray = wordsApi.split("\n"); //console.log(wordArray); Line below will pull a random word from the array
-  const randomIndex = Math.floor(Math.random() * wordArray.length);
+  const randomIndex = Math.floor(Math.random() * wordArray.length); 
   word = wordArray[randomIndex].trim();
+  
   circle(word);
   };
 //this retrieve's word and starts game
 getWord(); 
 //function to hold circle symbols in place of letters
 const circle = function (word) {
+  //placeholderLetters will display symbols in the place of letters to be guessed so that the user can know how many characters are in the word
   const placeholderLetters = [];
   for (const letter of word) {
     //console.log(letter);
@@ -42,7 +44,7 @@ guessButton.addEventListener("click", function (e) {
   //verifying that it is a single letter
   const goodGuess = validator(guess);
 
-  if (goodGuess) {
+  if (goodGuess) { //as in, the input value is a single letter
     makeGuess(guess);
   }
   letterInput.value = "";
@@ -52,12 +54,16 @@ guessButton.addEventListener("click", function (e) {
 const validator = function (input) {
    const acceptedLetter = /[a-zA-Z]/;
    if (input.length === 0) {
+     //nothing enetered output
      message.innerText = "Please enter a letter.";
    } else if (input.length > 1) {
+     //multiple characters entered output
      message.innerText = "Please enter a SINGLE letter.";
    } else if (!input.match(acceptedLetter)) {
+     //output message if a number or special character is entered
      message.innerText = "Please enter a single LETTER.";
    } else {
+     //output if a singular letter is entered
      return input;
    }
 };
@@ -65,26 +71,27 @@ const validator = function (input) {
 const makeGuess = function (guess) {
 guess = guess.toUpperCase();
 //checks to see if  this letter has been guessed
-if (guessedLetters.includes(guess)) {
-  message.innerText= "You already guessed that one, silly! Try a new letter.";
-} else {
-  guessedLetters.push(guess);
-  console.log(guessedLetters);
-  countDown(guess);
-  displayGuessedLetters();
-  updateWordProgress(guessedLetters); //links function so remaining guesses will update as the player guesses letters
-}
+  if (guessedLetters.includes(guess)) {
+    message.innerText= "You already guessed that one, silly! Try a new letter.";
+  } else {
+    guessedLetters.push(guess);
+    console.log(guessedLetters);
+    countDown(guess);
+    displayGuessedLetters();
+    updateWordProgress(guessedLetters); //links function so remaining guesses will update as the player guesses letters
+  }
 };
 
 const displayGuessedLetters = function () {
   //emptying innerHTML to display nothing
-  guessedUL.innterHTML = "";
+  guessedUL.innerHTML = "";
   //turning guessed letters into html elements so they can show on the page
   for (const letter of guessedLetters) {
     const li = document.createElement("li");
     li.innerText = letter;
     guessedUL.append(li);
-}
+
+  }
 };
 
 //replaces dot symbols with letters
